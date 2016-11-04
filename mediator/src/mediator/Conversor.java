@@ -14,8 +14,15 @@ public class Conversor extends Colleague {
     }
     
     public float converteParaDolar(float quantia, String unidade){
-        if(unidade.equals("reais")) return quantia * razaoReal;
-        else return quantia * razaoEuro;
+        float convertido = 0f;
+        if(unidade.equals("reais")){
+            convertido = quantia * razaoReal;
+        }
+        else {
+            convertido = quantia * razaoEuro;
+        }
+        System.out.println("Convertendo " + quantia + " " + unidade + " para " + convertido + " dolares");
+        return convertido;
     }
     
 }
