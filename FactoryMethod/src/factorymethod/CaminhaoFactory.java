@@ -9,7 +9,11 @@ package factorymethod;
  *
  * @author Zilly
  */
-public interface VeiculoFactory {
+public class CaminhaoFactory implements VeiculoFactory {
+
+    @Override
+    public Veiculo criaVeiculo() {
+        return new Caminhao();
+    }
     
-    public Veiculo criaVeiculo();
 }
