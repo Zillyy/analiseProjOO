@@ -9,7 +9,17 @@ package factorymethod;
  *
  * @author Zilly
  */
-public abstract class VeiculoFactory {
+public class VeiculoFactory {
     
-    public abstract Veiculo criaVeiculo(int numeroRodas, int numeroEixos, int ano, String marca, String modelo, String cor, String placa, String chassi, float peso);
+    public Veiculo criaVeiculo(String tipoVeiculo){
+        if(tipoVeiculo.equalsIgnoreCase("carro")){
+            return new Carro();
+        } else if(tipoVeiculo.equalsIgnoreCase("moto")){
+            return new Moto();
+        } else if(tipoVeiculo.equalsIgnoreCase("caminhao")){
+            return new Caminhao();
+        } else {
+            return null;
+        }
+    }
 }

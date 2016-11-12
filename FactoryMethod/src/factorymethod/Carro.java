@@ -9,10 +9,13 @@ package factorymethod;
  *
  * @author Zilly
  */
-public class Carro extends Veiculo {
+public class Carro implements Veiculo {
 
-    public Carro(int ano, String marca, String modelo, String cor, String placa, String chassi) {
-        super(4, 2, ano, marca, modelo, cor, placa, chassi);
+    @Override
+    public void getInfo() {
+        System.out.println("Este objeto é um carro.");
     }
+    
+    
     
 }

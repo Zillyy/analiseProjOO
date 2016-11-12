@@ -9,23 +9,10 @@ package factorymethod;
  *
  * @author Zilly
  */
-public class Caminhao extends Veiculo {
-    
-    private float peso;
-    
-    public Caminhao(int numeroRodas, int numeroEixos, int ano, String marca, String modelo, String cor, String placa, String chassi, float peso) {
-        super(numeroRodas, numeroEixos, ano, marca, modelo, cor, placa, chassi);
-        this.peso = peso;
-    }
+public class Caminhao implements Veiculo {
 
     @Override
     public void getInfo() {
-        super.getInfo();
-        System.out.println("Possuo peso: " + this.peso + " toneladas.");
+        System.out.println("Este objeto é um caminhão.");
     }
-
-    public float getPeso() {
-        return peso;
-    }
-    
 }
