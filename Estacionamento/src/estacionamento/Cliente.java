@@ -1,5 +1,6 @@
 package estacionamento;
 
+import pagamento.*;
 import stopwatch.Stopwatch;
 
 /**
@@ -16,10 +17,10 @@ public class Cliente {
         
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.start();
-        Thread.sleep(5000);
+        Thread.sleep(200);
         
         //Estacionamento com suas taxas para moto/carro
-        Estacionamento estacionamento = new Estacionamento(0.53f, 1.25f);
+        Estacionamento estacionamento = new Estacionamento(0.53f, 1.25f, 2.67f);
         
         //Factory de veículos
         VeiculoFactory factory;
@@ -36,11 +37,11 @@ public class Cliente {
         
         estacionamento.listaVeiculos();
         
-        System.out.println("Saída de um veículo que pagará: " + estacionamento.removeVeiculo(2, 4));
+        estacionamento.removeVeiculo(2, 4f, new PagamentoBoleto());
         
         estacionamento.listaVeiculos();
         
-        System.out.println("Saída de um veículo que pagará: " + estacionamento.removeVeiculo(0, 3));
+        estacionamento.removeVeiculo(0, 3f, new PagamentoCartaoCredito());
         
         System.out.println(stopwatch.stop());
     }
