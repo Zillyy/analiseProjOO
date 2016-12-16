@@ -1,7 +1,6 @@
 package estacionamento;
 
 import pagamento.*;
-import stopwatch.Stopwatch;
 
 /**
  *
@@ -11,15 +10,10 @@ public class Cliente {
 
     /**
      * @param args the command line arguments
-     * @throws java.lang.InterruptedException
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         
-        Stopwatch stopwatch = new Stopwatch();
-        stopwatch.start();
-        Thread.sleep(200);
-        
-        //Estacionamento com suas taxas para moto/carro
+        //Estacionamento com suas taxas para moto/carro/caminhão
         Estacionamento estacionamento = new Estacionamento(0.53f, 1.25f, 2.67f);
         
         //Factory de veículos
@@ -35,15 +29,45 @@ public class Cliente {
         estacionamento.adicionaVeiculo(factory.criaVeiculo());
         estacionamento.adicionaVeiculo(factory.criaVeiculo());
         
+        //Salvando Memento do Estacionamento
+        estacionamento.salvarEstado();
+        
+        //Adicionando caminhões ao estacionamento
+        factory = CaminhaoFactory.getInstance();
+        estacionamento.adicionaVeiculo(factory.criaVeiculo());
+        
+        Caminhao c = (Caminhao) factory.criaVeiculo();
+        c.setNumEixos(8);
+        c.setPesoTon(10);
+        c.setImposto();
+        estacionamento.adicionaVeiculo(c);
+        
         estacionamento.listaVeiculos();
         
+        //Salvando Memento do Estacionamento
+        estacionamento.salvarEstado();
+        
+        //Removendo veículos
         estacionamento.removeVeiculo(2, 4f, new PagamentoBoleto());
         
         estacionamento.listaVeiculos();
         
         estacionamento.removeVeiculo(0, 3f, new PagamentoCartaoCredito());
         
-        System.out.println(stopwatch.stop());
+        estacionamento.listaVeiculos();
+        
+        estacionamento.removeVeiculo(3, 6f, new PagamentoCartaoDebito());
+        
+        //Restaurando Memento do Estacionamento
+        System.out.println("Restaurando estado do estacionamento -----");
+        estacionamento.voltarEstado();
+        estacionamento.listaVeiculos();
+        
+        //Restaurando Memento do Estacionamento
+        System.out.println("Restaurando estado do estacionamento -----");
+        estacionamento.voltarEstado();
+        estacionamento.listaVeiculos();
+        
     }
     
 }

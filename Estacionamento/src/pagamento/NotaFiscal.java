@@ -3,8 +3,8 @@ package pagamento;
 public class NotaFiscal {
     
     private static int CONTADOR_ID;
-    protected int idNotaFiscal;
-    protected float valorTotal;
+    private int idNotaFiscal;
+    private float valorTotal;
 
     public NotaFiscal() {
         idNotaFiscal = ++CONTADOR_ID;
